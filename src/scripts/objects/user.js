@@ -7,6 +7,7 @@ const user = {
     following: '',
     userName: '',
     repositories: [],
+    events: [],
     setInfo(gitHubUser){
         this.avatarUrl = gitHubUser.avatar_url //imagem do usuário
         this.name = gitHubUser.name //nome completo do usuário
@@ -18,6 +19,9 @@ const user = {
     
     setRepositories(repositories){
         this.repositories = repositories
+    },
+    setEvents(events){
+        this.events = events
     }
 }
 
