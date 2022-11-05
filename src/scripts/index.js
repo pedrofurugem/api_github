@@ -23,11 +23,10 @@ document.getElementById('input-search').addEventListener('keyup', (e)=> {
     }
 })
 
-//validação se usuário existe ou não
 function validateEmptyInput(userName){
     if(userName.length === 0){
         alert('Preencha o campo com o nome do usuário do GitHub')
-        return true
+        return 
     }
 }
 

@@ -1,4 +1,3 @@
-//objeto screen/tela = exibir dados na tela
 const screen = {
     userProfile: document.querySelector('.profile-data'),
     renderUser(user){
@@ -7,29 +6,28 @@ const screen = {
                                         <div class="data"> 
                                             <h1>${user.name ?? 'não possui nome cadastrado 😢'}</h1>
                                             <p>${user.bio ?? 'não possui bio cadastrada 😢'}</p>
-                                            <p>seguidores: ${user.followers}</p> 
-                                            <p>seguindo: ${user.following}</p>
+                                            <p>seguidores: ${user.followers ?? 'não há seguidores 😢'}</p> 
+                                            <p>seguindo: ${user.following?? 'não há seguidores 😢' }</p>
                                         </div>
                                     </div>`
            
         let repositoriesItens = ''
         user.repositories.forEach(repo => repositoriesItens += `<li>
                                                                 <a href="${repo.html_url}" target="_blank">${repo.name}<br>
-                                                                forks: ${repo.forks}<br>
-                                                                estrelas: ${repo.stargazers_count}<br>
-                                                                watchers: ${repo.watchers}<br>
-                                                                linguagem: ${repo.language}
+                                                                forks: ${repo.forks ?? 'não há forks 😢'}<br>
+                                                                estrelas: ${repo.stargazers_count ?? 'não há estrelas 😢'}<br>
+                                                                watchers: ${repo.watchers ?? 'não há views 😢'}<br>
+                                                                linguagem: ${repo.language ?? 'não definido'}
                                                                 </a>
                                                                 </li>`)
         
-        //console.log(repositoriesItens)
         if(user.repositories.length > 0){
             this.userProfile.innerHTML += `<div class="repositories section"> 
                                               <h2>Repositórios</h2>
                                               <ul>${repositoriesItens}</ul>
                                            </div>`
         }
-        //SOLICITAÇÃO 2
+        
         const filtered = user.events.filter(f => f.type === 'PushEvent' ||  f.type === 'CreateEvent' && f.payload.commits === 'message')
         console.log(filtered)
     
